@@ -1,0 +1,360 @@
+
+> crochet-frontend@1.0.0 dev
+> vite
+
+
+  VITE v5.4.21  ready in 571 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+9:38:41 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:38:41 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:38:41 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:38:41 am [vite] http proxy error: /api/cart
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:38:41 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:11 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:11 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:11 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:11 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:12 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:12 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:12 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:12 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:14 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:14 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:14 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:14 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:16 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:16 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/admin/settings
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/admin/settings
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:17 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:18 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:18 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:18 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:18 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:28 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:28 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:28 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:28 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:29 am [vite] http proxy error: /api/admin/settings
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:29 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:29 am [vite] http proxy error: /api/admin/settings
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:29 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:30 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:30 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:30 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:30 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:38 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:39 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:39 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:39 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:39 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:40 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:40 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:40 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:40 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:41 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:41 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:41 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:41 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:42 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:43 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:45 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:46 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:46 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:46 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:46 am [vite] http proxy error: /api/checkout/admin/orders?limit=10
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:47 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:47 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:47 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:47 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:48 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:48 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:48 am [vite] http proxy error: /api/admin/dashboard
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:48 am [vite] http proxy error: /api/checkout/admin/orders?limit=5
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:49 am [vite] http proxy error: /api/checkout/my-orders
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:49 am [vite] http proxy error: /api/checkout/my-orders
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:51 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:51 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:51 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:51 am [vite] http proxy error: /api/products/categories
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:52 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:52 am [vite] http proxy error: /api/products
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:53 am [vite] http proxy error: /api/products?limit=4
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:53 am [vite] http proxy error: /api/products?limit=1
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:53 am [vite] http proxy error: /api/products?limit=4
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:53 am [vite] http proxy error: /api/products?limit=1
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:55 am [vite] http proxy error: /api/products?limit=4
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:55 am [vite] http proxy error: /api/products?limit=1
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:55 am [vite] http proxy error: /api/auth/me
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:55 am [vite] http proxy error: /api/products?limit=4
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:55 am [vite] http proxy error: /api/products?limit=1
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+9:39:55 am [vite] http proxy error: /api/auth/me
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)

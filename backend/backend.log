@@ -1,0 +1,688 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.59:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 749-286-690
+127.0.0.1 - - [07/Sep/2026 16:03:29] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:04:02] "[31m[1mPOST /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:14] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:14] "[35m[1mPOST /api/cart HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:05:49] "[35m[1mPOST /api/checkout HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: table orders has no column named shipping_address
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask/app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask/app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask_cors/extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask_cors/extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/utils/auth.py", line 53, in decorated
+    return f(*args, **kwargs)
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/routes/checkout.py", line 32, in create_order
+    db.session.flush()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/scoping.py", line 923, in flush
+    return self._proxied.flush(objects=objects)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    ^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 1234, in _emit_insert_statements
+    result = connection.execute(
+    
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+    
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+    
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+    
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+    
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    ^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "/home/kaptan/Documents/MARK-44/Crochet/backend/venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) table orders has no column named shipping_address
+[SQL: INSERT INTO orders (user_id, total, status, payment_screenshot_blob, payment_screenshot_mime, shipping_address, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (2, 599.98, 'pending', None, None, None, '2026-09-07 10:35:49.752080', '2026-09-07 10:35:49.752091')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+127.0.0.1 - - [07/Sep/2026 16:05:54] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:54] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:54] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:54] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:05:57] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:09] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:10] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:51] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:54] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:06:55] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:06:55] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:07:50] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:07:50] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:07:54] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:10:05] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:10:05] "[31m[1mPOST /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:10:05] "[31m[1mPOST /api/checkout HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:13:16] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:13:16] "[33mPOST /api/cart HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Sep/2026 16:13:16] "[31m[1mPOST /api/checkout HTTP/1.1[0m" 400 -
+127.0.0.1 - - [07/Sep/2026 16:13:50] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:13:50] "[35m[1mPOST /api/products HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:14:29] "[35m[1mPOST /api/cart HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:14:29] "[35m[1mPOST /api/checkout HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:14:54] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:15:24] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:52] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:34:52] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:34:55] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/admin/dashboard HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/checkout/admin/orders?limit=5 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/admin/dashboard HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/checkout/admin/orders?limit=5 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:06] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:35:13] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:35:14] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:36:01] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:01] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:01] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:01] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:04] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:04] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:06] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:06] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:15] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [07/Sep/2026 16:36:15] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:39] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:39] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:40] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:36:40] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:30] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "OPTIONS /api/auth/register HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:37:43] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:39:13] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:39:13] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:39:16] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:39:17] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:39:17] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:40:41] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:09] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:22] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:22] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:22] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:22] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:25] "OPTIONS /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:25] "[31m[1mPOST /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:26] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:26] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:30] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:41:43] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:41:43] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:42:26] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:05] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:05] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:07] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "[31m[1mGET /api/cart HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:08] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:20] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:20] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:43:23] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:23] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:23] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:23] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:23] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:23] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:27] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:27] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:27] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:27] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:34] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:35] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:41] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:41] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:41] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:42] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:42] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:42] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:42] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:45] "[35m[1mPOST /api/cart HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:43:45] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:43:47] "[33mGET /api/checkout/qr-image HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Sep/2026 16:43:47] "[33mGET /api/checkout/qr-image HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Sep/2026 16:43:47] "[35m[1mPOST /api/checkout HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:43:47] "[35m[1mPOST /api/checkout HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:44:11] "POST /api/checkout/3/upload-screenshot HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:11] "DELETE /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:13] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:13] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:16] "GET /api/checkout/3 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:16] "GET /api/checkout/3 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:23] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:23] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:23] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:23] "GET /api/checkout/3 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:23] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:23] "GET /api/checkout/3 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:25] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:25] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:27] "GET /api/checkout/2 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:27] "GET /api/checkout/2 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:29] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:29] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:31] "GET /api/checkout/2 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:31] "GET /api/checkout/2 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:32] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:32] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:33] "GET /api/checkout/3 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:33] "GET /api/checkout/3 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:35] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:35] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:36] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:36] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:36] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:36] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:39] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:43] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:45] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:45] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:46] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:46] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:46] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:46] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:52] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:52] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:54] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:54] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:54] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:54] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:56] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:56] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:57] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:57] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:57] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:44:57] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:07] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:08] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:08] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:08] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:08] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:11] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:11] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:11] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:45:11] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:19] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:20] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:20] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:20] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:20] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:46:36] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:00] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:00] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:00] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:00] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:03] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:05] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:05] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:07] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:07] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:07] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:07] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:10] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:10] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:10] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:10] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:10] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:12] "POST /api/auth/logout HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:21] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:26] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [07/Sep/2026 16:47:29] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:47:29] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:29] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:29] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:29] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:29] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:34] "[35m[1mPOST /api/cart HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:47:34] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:38] "[35m[1mPOST /api/checkout HTTP/1.1[0m" 201 -
+127.0.0.1 - - [07/Sep/2026 16:47:38] "[31m[1mPOST /api/checkout HTTP/1.1[0m" 400 -
+127.0.0.1 - - [07/Sep/2026 16:47:38] "[33mGET /api/checkout/qr-image HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Sep/2026 16:47:38] "[33mGET /api/checkout/qr-image HTTP/1.1[0m" 404 -
+127.0.0.1 - - [07/Sep/2026 16:47:57] "POST /api/checkout/4/upload-screenshot HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:57] "DELETE /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:58] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:58] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:58] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:58] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:59] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:47:59] "GET /api/checkout/my-orders HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:02] "POST /api/auth/logout HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:06] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:06] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:06] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:06] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:06] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:06] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:08] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:08] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:08] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:08] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:22] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:27] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:29] "POST /api/auth/logout HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:32] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:32] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:32] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:32] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:32] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:32] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:38] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:39] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:39] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:39] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:39] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:49] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:49] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:49] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:49] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:48:49] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:38] "POST /api/auth/logout HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:47] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:47] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:48] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:48] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products/categories HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:49:49] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:53:20] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 16:53:24] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:24] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:24] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:24] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:24] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:24] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:40] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:40] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:40] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:53:40] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:07] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:07] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:07] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:07] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:08] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:09] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:10] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:11] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:54:52] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:09] "PUT /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:10] "PUT /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:11] "PUT /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:11] "PUT /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:12] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:12] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:16] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:16] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:16] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:16] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:16] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:22] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:22] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:22] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:22] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:26] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:32] "PUT /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:35] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:35] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:55:57] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:56:01] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:13] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:13] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:39] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:39] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:39] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:39] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:39] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:40] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:40] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:40] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:40] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:43] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:44] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:50] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:50] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:50] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:51] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:51] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:51] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:57:51] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:53] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:55] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:55] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:55] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:55] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:55] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:56] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:57] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:57] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:57] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:57] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:57] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:58] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:58] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:58] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:58:58] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:02] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:04] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:04] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:04] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:04] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:06] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:06] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:06] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:06] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 16:59:11] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:18] "[31m[1mGET /api/admin/dashboard HTTP/1.1[0m" 401 -
+127.0.0.1 - - [07/Sep/2026 17:01:29] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:29] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:29] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:29] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:33] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:33] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:33] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:33] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:33] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:34] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:34] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:34] "POST /api/auth/logout HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:37] "POST /api/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:37] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:37] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:37] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:37] "GET /api/products?limit=4 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:37] "GET /api/products?limit=1 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:39] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:39] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:39] "GET /api/checkout/admin/orders?limit=5 HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:01:39] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:00] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:00] "GET /api/admin/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/cart HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/products HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:02:09] "GET /api/admin/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:04:02] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [07/Sep/2026 17:04:02] "GET /api/admin/dashboard HTTP/1.1" 200 -
