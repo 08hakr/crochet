@@ -30,6 +30,9 @@ export default function Account() {
       pending: 'badge-pending',
       paid: 'badge-paid',
       shipped: 'badge-shipped',
+      out_for_delivery: 'badge-out_for_delivery',
+      delivered: 'badge-delivered',
+      in_return: 'badge-in_return',
       cancelled: 'badge-cancelled'
     };
     return badges[status] || 'badge-pending';
@@ -115,7 +118,7 @@ export default function Account() {
                         <td style={{fontWeight: 600, color: 'var(--primary)'}}>₹{order.total.toFixed(2)}</td>
                         <td>
                           <span className={`badge ${getStatusBadge(order.status)}`}>
-                            {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                            {order.status.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
                           </span>
                         </td>
                         <td>

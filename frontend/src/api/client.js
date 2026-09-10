@@ -14,36 +14,48 @@ function isPublicAuthEndpoint(url) {
   return PUBLIC_AUTH_ENDPOINTS.some(endpoint => url?.includes(endpoint));
 }
 
-function hasRefreshToken() {
-  return document.cookie.split(';').some(c => c.trim().startsWith('refresh_token='));
-}
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error) => {
+  failedQueue.forEach(({ resolve, reject }) => {
+    if (error) reject(error);
+    else resolve();
+  });
+  failedQueue = [];
+};
 
 api.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
-    
+
     if (error.response?.status === 401 && !originalRequest._retry && !isPublicAuthEndpoint(originalRequest.url)) {
-      if (!hasRefreshToken()) {
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/admin-login') {
-          window.location.href = '/login';
-        }
-        return Promise.reject(error);
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        }).then(() => api(originalRequest));
       }
-      
+
       originalRequest._retry = true;
-      
+      isRefreshing = true;
+
       try {
         await api.post('/auth/refresh');
+        processQueue(null);
         return api(originalRequest);
       } catch (refreshError) {
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/admin-login') {
+        processQueue(refreshError);
+        const path = window.location.pathname;
+        if (path !== '/login' && path !== '/register' && path !== '/admin-login') {
           window.location.href = '/login';
         }
         return Promise.reject(refreshError);
+      } finally {
+        isRefreshing = false;
       }
     }
-    
+
     return Promise.reject(error);
   }
 );

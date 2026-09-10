@@ -358,3 +358,26 @@ Error: connect ECONNREFUSED 127.0.0.1:5000
 9:39:55 am [vite] http proxy error: /api/auth/me
 Error: connect ECONNREFUSED 127.0.0.1:5000
     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+3:36:46 pm [vite] hmr update /src/context/AuthContext.jsx, /src/context/CartContext.jsx, /src/pages/Home.jsx, /src/pages/Shop.jsx, /src/pages/ProductDetail.jsx, /src/pages/Checkout.jsx, /src/pages/Account.jsx, /src/pages/OrderDetail.jsx, /src/pages/About.jsx, /src/pages/Contact.jsx, /src/pages/admin/AdminLogin.jsx, /src/pages/admin/AdminDashboard.jsx, /src/pages/admin/AdminDashboardNew.jsx, /src/pages/admin/AdminProducts.jsx, /src/pages/admin/AdminCategories.jsx, /src/pages/admin/AdminSettings.jsx
+3:36:54 pm [vite] hmr update /src/pages/admin/AdminDashboard.jsx
+3:38:38 pm [vite] hmr update /src/pages/admin/AdminSettings.jsx
+3:38:43 pm [vite] hmr update /src/pages/admin/AdminSettings.jsx
+3:38:56 pm [vite] hmr update /src/pages/admin/AdminSettings.jsx
+3:39:05 pm [vite] hmr update /src/pages/admin/AdminSettings.jsx
+3:39:19 pm [vite] hmr update /src/pages/Contact.jsx
+3:54:54 pm [vite] hmr update /src/pages/admin/AdminDashboard.jsx
+4:17:41 pm [vite] hmr update /src/App.jsx
+4:17:42 pm [vite] hmr update /src/App.jsx
+4:17:42 pm [vite] hmr update /src/pages/admin/AdminLayout.jsx
+4:17:45 pm [vite] hmr update /src/pages/admin/AdminDashboardNew.jsx
+4:22:40 pm [vite] hmr update /src/pages/ProductDetail.jsx
+4:23:38 pm [vite] hmr update /src/App.jsx
+4:23:41 pm [vite] hmr update /src/App.jsx
+4:24:04 pm [vite] hmr update /src/pages/admin/AdminDashboard.jsx
+4:24:10 pm [vite] hmr update /src/pages/admin/AdminDashboard.jsx
+4:24:15 pm [vite] hmr update /src/pages/admin/AdminDashboard.jsx
+4:24:47 pm [vite] hmr update /src/pages/OrderDetail.jsx
+4:24:52 pm [vite] hmr update /src/pages/OrderDetail.jsx
+4:30:21 pm [vite] hmr update /src/styles.css
+4:30:28 pm [vite] hmr update /src/pages/Account.jsx
+4:30:33 pm [vite] hmr update /src/pages/Account.jsx

@@ -36,6 +36,9 @@ export default function OrderDetail() {
       pending: 'badge-pending',
       paid: 'badge-paid',
       shipped: 'badge-shipped',
+      out_for_delivery: 'badge-shipped',
+      delivered: 'badge-paid',
+      in_return: 'badge-pending',
       cancelled: 'badge-cancelled'
     };
     return badges[status] || 'badge-pending';
@@ -106,7 +109,7 @@ export default function OrderDetail() {
               <p style={{color: 'var(--text-light)'}}>Placed on {formatDate(order.created_at)}</p>
             </div>
             <span className={`badge ${getStatusBadge(order.status)}`} style={{fontSize: '1rem', padding: '8px 16px'}}>
-              {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+              {order.status.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
             </span>
           </div>
 

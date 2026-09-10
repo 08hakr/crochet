@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { productsAPI } from '../api/client';
+import api from '../api/client';
 
 export default function Contact() {
   const [contactInfo, setContactInfo] = useState({
@@ -18,19 +18,14 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    productsAPI.getAll().then(res => {
-      const settings = res.data.settings;
-      if (settings?.contact_info) {
-        const lines = settings.contact_info.split('\n');
-        const info = {};
-        lines.forEach(line => {
-          const [key, ...valueParts] = line.split(':');
-          if (key && valueParts.length) {
-            info[key.toLowerCase().trim()] = valueParts.join(':').trim();
-          }
-        });
-        setContactInfo(prev => ({ ...prev, ...info }));
-      }
+    api.get('/admin/settings/public').then(res => {
+      const s = res.data.settings || {};
+      setContactInfo(prev => ({
+        email: s.contact_email || prev.email,
+        phone: s.contact_phone || prev.phone,
+        instagram: s.contact_instagram || prev.instagram,
+        address: s.contact_address || prev.address
+      }));
     }).catch(() => {});
   }, []);
 

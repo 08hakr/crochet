@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { productsAPI } from '../api/client';
+import { ProductCard } from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 
 export default function ProductDetail() {
@@ -9,36 +10,39 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [adding, setAdding] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await productsAPI.getOne(id);
         setProduct(response.data.product);
       } catch (err) {
-        setError('Product not found');
+        setError(err.response?.data?.error || 'Product not found');
       } finally {
         setLoading(false);
       }
     };
     fetchProduct();
+    window.scrollTo(0, 0);
   }, [id]);
 
   const handleAddToCart = async () => {
-    if (!product) return;
+    if (!product || adding) return;
+    setAdding(true);
     try {
       await addToCart(product.id, quantity);
     } catch (err) {
       console.error('Failed to add to cart:', err);
+    } finally {
+      setAdding(false);
     }
   };
 
-  const imageUrl = product?.image 
-    ? product.image 
-    : product?.image_blob 
-      ? `data:${product.image_mime};base64,${product.image_blob}` 
-      : null;
+  const imageUrl = product?.image || null;
 
   if (loading) {
     return (
@@ -66,8 +70,8 @@ export default function ProductDetail() {
         <div className="empty-state">
           <div className="empty-state-icon">😔</div>
           <h3 className="empty-state-title">Product Not Found</h3>
-          <p className="empty-state-text">The product you're looking for doesn't exist or has been removed.</p>
-          <Link to="/shop" className="btn btn-primary mt-2">Continue Shopping</Link>
+          <p className="empty-state-text">{error || "The product you're looking for doesn't exist or has been removed."}</p>
+          <Link to="/shop" className="btn btn-primary" style={{marginTop: '16px'}}>Continue Shopping</Link>
         </div>
       </div>
     );
@@ -77,7 +81,7 @@ export default function ProductDetail() {
     <div>
       <nav style={{padding: '20px 0'}} aria-label="Breadcrumb">
         <div className="container">
-          <ol style={{display: 'flex', gap: '8px', alignItems: 'center', fontSize: '0.9rem', color: 'var(--text-light)', flexWrap: 'wrap'}}>
+          <ol style={{display: 'flex', gap: '8px', alignItems: 'center', fontSize: '0.9rem', color: 'var(--text-light)', flexWrap: 'wrap', listStyle: 'none', padding: 0, margin: 0}}>
             <li><Link to="/" style={{color: 'var(--text-light)'}}>Home</Link></li>
             <li>/</li>
             <li><Link to="/shop" style={{color: 'var(--text-light)'}}>Shop</Link></li>
@@ -92,8 +96,8 @@ export default function ProductDetail() {
           <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', maxWidth: '1000px', margin: '0 auto', alignItems: 'start'}}>
             <div className="card" style={{overflow: 'hidden', borderRadius: 'var(--radius)'}}>
               {imageUrl ? (
-                <img 
-                  src={imageUrl} 
+                <img
+                  src={imageUrl}
                   alt={product.name}
                   style={{
                     width: '100%',
@@ -129,7 +133,7 @@ export default function ProductDetail() {
               )}
               <h1 style={{fontSize: '2.5rem', marginBottom: '16px', fontWeight: 600}}>{product.name}</h1>
               <div style={{fontSize: '2rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '24px', fontFamily: "'Playfair Display', serif"}}>
-                ₹{product.price.toFixed(2)}
+                ₹{Number(product.price).toFixed(2)}
               </div>
 
               {product.description && (
@@ -154,96 +158,92 @@ export default function ProductDetail() {
                 </div>
                 {product.created_at && (
                   <div style={{fontSize: '0.85rem', color: 'var(--text-light)'}}>
-                    Added: {new Date(product.created_at).toLocaleDateString()}
+                    Added: {new Date(product.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 )}
               </div>
 
-              <div style={{display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap'}}>
-                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-                  <label htmlFor="quantity" style={{fontWeight: 500}}>Quantity:</label>
-                  <div style={{display: 'flex', alignItems: 'center', border: '2px solid var(--border)', borderRadius: 'var(--radius-sm)', overflow: 'hidden'}}>
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      disabled={quantity <= 1}
-                      style={{
-                        width: '44px',
-                        height: '44px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'var(--white)',
-                        color: 'var(--text)',
-                        fontSize: '1.2rem',
-                        transition: 'var(--transition)'
-                      }}
-                    >
-                      −
-                    </button>
-                    <input
-                      id="quantity"
-                      type="number"
-                      value={quantity}
-                      onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                      min={1}
-                      max={product.stock}
-                      style={{
-                        width: '60px',
-                        height: '44px',
-                        textAlign: 'center',
-                        border: 'none',
-                        outline: 'none',
-                        fontSize: '1rem',
-                        fontWeight: 500
-                      }}
-                    />
-                    <button
-                      onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                      disabled={quantity >= product.stock}
-                      style={{
-                        width: '44px',
-                        height: '44px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'var(--white)',
-                        color: 'var(--text)',
-                        fontSize: '1.2rem',
-                        transition: 'var(--transition)'
-                      }}
-                    >
-                      +
-                    </button>
+              {product.stock > 0 && (
+                <div style={{display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                    <label htmlFor="quantity" style={{fontWeight: 500}}>Quantity:</label>
+                    <div style={{display: 'flex', alignItems: 'center', border: '2px solid var(--border)', borderRadius: 'var(--radius-sm)', overflow: 'hidden'}}>
+                      <button
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        disabled={quantity <= 1}
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          background: 'var(--white)',
+                          color: 'var(--text)',
+                          fontSize: '1.2rem',
+                          transition: 'var(--transition)'
+                        }}
+                      >
+                        −
+                      </button>
+                      <input
+                        id="quantity"
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(Math.max(1, Math.min(product.stock, parseInt(e.target.value) || 1)))}
+                        min={1}
+                        max={product.stock}
+                        style={{
+                          width: '60px',
+                          height: '44px',
+                          textAlign: 'center',
+                          border: 'none',
+                          outline: 'none',
+                          fontSize: '1rem',
+                          fontWeight: 500
+                        }}
+                      />
+                      <button
+                        onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
+                        disabled={quantity >= product.stock}
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          background: 'var(--white)',
+                          color: 'var(--text)',
+                          fontSize: '1.2rem',
+                          transition: 'var(--transition)'
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={adding}
+                    className="btn btn-primary btn-lg"
+                    style={{flex: 1, minWidth: '200px'}}
+                  >
+                    {adding ? 'Adding...' : 'Add to Cart'}
+                  </button>
                 </div>
-                <button
-                  onClick={handleAddToCart}
-                  disabled={product.stock === 0}
-                  className="btn btn-primary btn-lg"
-                  style={{flex: 1, minWidth: '200px'}}
-                >
-                  {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-                </button>
-              </div>
+              )}
 
-              <div style={{marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border)'}}>
-                <h3 style={{fontSize: '1rem', marginBottom: '16px', fontWeight: 600}}>Share this product</h3>
-                <div style={{display: 'flex', gap: '12px'}}>
-                  <button className="btn btn-sm btn-outline" style={{padding: '8px 12px'}}>
-                    📱 Share
-                  </button>
-                  <button className="btn btn-sm btn-outline" style={{padding: '8px 12px'}}>
-                    💌 Wishlist
-                  </button>
+              {product.stock === 0 && (
+                <div style={{padding: '16px', background: '#fdeaea', borderRadius: 'var(--radius-sm)', color: 'var(--error)', fontWeight: 500, textAlign: 'center'}}>
+                  This product is currently out of stock
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       <section className="section" style={{background: 'var(--white)'}}>
-        <div className="container" style={{maxWidth: '800px'}}>
+        <div className="container" style={{maxWidth: '1000px'}}>
           <h2 className="section-title" style={{textAlign: 'center', marginBottom: '40px'}}>You May Also Like</h2>
           <RelatedProducts excludeId={product.id} />
         </div>
@@ -254,19 +254,18 @@ export default function ProductDetail() {
 
 function RelatedProducts({ excludeId }) {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     productsAPI.getAll().then(res => {
       setProducts((res.data.products || []).filter(p => p.id !== excludeId).slice(0, 4));
-    });
+    }).catch(() => {});
   }, [excludeId]);
-
-  const { addToCart } = useCart();
 
   if (products.length === 0) return null;
 
   return (
-    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px'}}>
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px'}}>
       {products.map(product => (
         <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
       ))}

@@ -240,23 +240,38 @@ input, textarea, select {
 }
 
 .badge-pending {
-  background: #fff3e0;
-  color: var(--warning);
+  background: #fef3c7;
+  color: #f59e0b;
 }
 
 .badge-paid {
-  background: #e8f5e9;
-  color: var(--success);
+  background: #d1fae5;
+  color: #10b981;
 }
 
 .badge-shipped {
-  background: #e3f2fd;
-  color: #1565c0;
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.badge-out_for_delivery {
+  background: #ede9fe;
+  color: #8b5cf6;
+}
+
+.badge-delivered {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.badge-in_return {
+  background: #ffedd5;
+  color: #f97316;
 }
 
 .badge-cancelled {
-  background: #fdeaea;
-  color: var(--error);
+  background: #fee2e2;
+  color: #ef4444;
 }
 
 .grid {

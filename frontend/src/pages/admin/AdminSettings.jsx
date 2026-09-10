@@ -6,7 +6,10 @@ export default function AdminSettings() {
     hero_title: '',
     hero_subtitle: '',
     about_text: '',
-    contact_info: '',
+    contact_email: '',
+    contact_phone: '',
+    contact_instagram: '',
+    contact_address: '',
     qr_image: null,
     qr_preview: null
   });
@@ -34,7 +37,10 @@ export default function AdminSettings() {
         hero_title: merged.hero_title || 'Handcrafted Crochet Creations',
         hero_subtitle: merged.hero_subtitle || 'Beautiful handmade items made with love',
         about_text: merged.about_text || 'Welcome to our crochet shop! We create unique, handcrafted crochet items including amigurumi, wearables, and home decor. Each piece is made with care and attention to detail.',
-        contact_info: merged.contact_info || 'Email: contact@crochetcreations.com\nPhone: +91 98765 43210\nInstagram: @crochetcreations',
+        contact_email: merged.contact_email || '',
+        contact_phone: merged.contact_phone || '',
+        contact_instagram: merged.contact_instagram || '',
+        contact_address: merged.contact_address || '',
         qr_image: null,
         qr_preview: merged.qr_image_blob ? `data:${merged.qr_image_mime || 'image/png'};base64,${merged.qr_image_blob}` : null
       });
@@ -76,7 +82,10 @@ export default function AdminSettings() {
         hero_title: settings.hero_title,
         hero_subtitle: settings.hero_subtitle,
         about_text: settings.about_text,
-        contact_info: settings.contact_info
+        contact_email: settings.contact_email,
+        contact_phone: settings.contact_phone,
+        contact_instagram: settings.contact_instagram,
+        contact_address: settings.contact_address
       });
       setMessage({ type: 'success', text: 'Content settings saved successfully!' });
     } catch (err) {
@@ -211,20 +220,60 @@ export default function AdminSettings() {
             <hr style={{border: 'none', borderTop: '1px solid var(--border)', margin: '32px 0'}} />
 
             <h2 style={{fontSize: '1.3rem', marginBottom: '8px'}}>Contact Information</h2>
-            <p style={{color: 'var(--text-light)', marginBottom: '24px'}}>Displayed on the Contact page and footer (one per line)</p>
+            <p style={{color: 'var(--text-light)', marginBottom: '24px'}}>Displayed on the Contact page</p>
+
+            <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px'}}>
+              <div className="form-group">
+                <label htmlFor="contact_email" className="form-label">Email</label>
+                <input
+                  id="contact_email"
+                  type="email"
+                  name="contact_email"
+                  value={settings.contact_email}
+                  onChange={handleChange}
+                  className="form-input"
+                  placeholder="contact@example.com"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="contact_phone" className="form-label">Phone</label>
+                <input
+                  id="contact_phone"
+                  type="text"
+                  name="contact_phone"
+                  value={settings.contact_phone}
+                  onChange={handleChange}
+                  className="form-input"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+            </div>
 
             <div className="form-group">
-              <label htmlFor="contact_info" className="form-label">Contact Info</label>
-              <textarea
-                id="contact_info"
-                name="contact_info"
-                value={settings.contact_info}
+              <label htmlFor="contact_instagram" className="form-label">Instagram</label>
+              <input
+                id="contact_instagram"
+                type="text"
+                name="contact_instagram"
+                value={settings.contact_instagram}
                 onChange={handleChange}
                 className="form-input"
-                rows={6}
-                style={{fontFamily: 'monospace'}}
+                placeholder="@yourusername"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="contact_address" className="form-label">Address</label>
+              <textarea
+                id="contact_address"
+                name="contact_address"
+                value={settings.contact_address}
+                onChange={handleChange}
+                className="form-input"
+                rows={3}
+                placeholder="123 Crochet Lane, Craft City, India"
               ></textarea>
-              <p className="form-help">Format: Label: Value (one per line)</p>
             </div>
 
             <div style={{display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '24px'}}>

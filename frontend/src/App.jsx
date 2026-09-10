@@ -19,10 +19,10 @@ import Contact from './pages/Contact';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminDashboardNew from './pages/admin/AdminDashboardNew';
 import AdminProducts from './pages/admin/AdminProducts';
 import AdminCategories from './pages/admin/AdminCategories';
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminOrderDetail from './pages/admin/AdminOrderDetail';
 
 function ProtectedRoute({ children, adminOnly = false }) {
   const { isAuthenticated, isAdmin, loading } = useAuth();
@@ -112,10 +112,10 @@ function App() {
           }>
             <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/dashboardnew" element={<AdminDashboardNew />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/settings" element={<AdminSettings />} />
+            <Route path="/admin/orders/:id" element={<AdminOrderDetail />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />

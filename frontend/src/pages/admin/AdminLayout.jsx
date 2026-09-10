@@ -7,7 +7,6 @@ export default function AdminLayout() {
 
   const navItems = [
     { path: '/admin/dashboard', label: 'Dashboard', icon: '📊' },
-    { path: '/admin/dashboardnew', label: 'Dashboard New', icon: '🆕' },
     { path: '/admin/products', label: 'Products', icon: '🧶' },
     { path: '/admin/categories', label: 'Categories', icon: '📂' },
     { path: '/admin/settings', label: 'Settings', icon: '⚙️' }
