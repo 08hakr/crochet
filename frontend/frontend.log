@@ -381,3 +381,5 @@ Error: connect ECONNREFUSED 127.0.0.1:5000
 4:30:21 pm [vite] hmr update /src/styles.css
 4:30:28 pm [vite] hmr update /src/pages/Account.jsx
 4:30:33 pm [vite] hmr update /src/pages/Account.jsx
+4:40:05 pm [vite] vite.config.js changed, restarting server...
+4:40:05 pm [vite] server restarted.

@@ -130,9 +130,9 @@ def update_order_status(order_id):
     if not data or 'status' not in data:
         return jsonify({'error': 'Status is required'}), 400
     
-    valid_statuses = ['pending', 'paid', 'shipped', 'cancelled']
+    valid_statuses = ['pending', 'paid', 'shipped', 'out_for_delivery', 'delivered', 'in_return', 'cancelled']
     if data['status'] not in valid_statuses:
-        return jsonify({'error': 'Invalid status'}), 400
+        return jsonify({'error': f'Invalid status. Valid statuses: {", ".join(valid_statuses)}'}), 400
     
     order.status = data['status']
     db.session.commit()

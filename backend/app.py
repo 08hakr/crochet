@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, jsonify, request
 from flask_cors import CORS
 import os
 from config import Config
@@ -13,9 +13,22 @@ def create_app():
     app = Flask(__name__, static_folder='../frontend/dist', static_url_path='')
     app.config.from_object(Config)
     
+    # CORS: allow production domain and local dev
+    origins = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'http://localhost:5000',
+        'http://127.0.0.1:5000',
+    ]
+    # Add Vercel domain if set
+    vercel_url = os.environ.get('VERCEL_URL')
+    if vercel_url:
+        origins.append(f'https://{vercel_url}')
+        origins.append(f'http://{vercel_url}')
+    
     CORS(app, 
          supports_credentials=True,
-         origins=['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5000', 'http://127.0.0.1:5000'],
+         origins=origins,
          allow_headers=['Content-Type', 'Authorization'],
          methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
     

@@ -5,11 +5,17 @@ import base64
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/api/admin')
 
+PUBLIC_SETTINGS_KEYS = ['hero_title', 'hero_subtitle', 'about_text', 'contact_email', 'contact_phone', 'contact_instagram', 'contact_address']
+
 DEFAULT_SETTINGS = {
     'hero_title': 'Handcrafted Crochet Creations',
     'hero_subtitle': 'Beautiful handmade items made with love',
     'about_text': 'Welcome to our crochet shop! We create unique, handcrafted crochet items including amigurumi, wearables, and home decor. Each piece is made with care and attention to detail.',
     'contact_info': 'Email: contact@crochetbusiness.com\nPhone: +91 98765 43210\nInstagram: @crochetbusiness',
+    'contact_email': 'contact@crochetbusiness.com',
+    'contact_phone': '+91 98765 43210',
+    'contact_instagram': '@crochetbusiness',
+    'contact_address': '',
     'qr_image_blob': '',
     'qr_image_mime': ''
 }
@@ -143,3 +149,14 @@ def init_settings():
             db.session.add(setting)
     db.session.commit()
     return jsonify({'message': 'Default settings initialized'})
+
+@admin_bp.route('/settings/public', methods=['GET'])
+def get_public_settings():
+    settings = {}
+    for key in PUBLIC_SETTINGS_KEYS:
+        setting = SiteSetting.query.filter_by(key=key).first()
+        if setting:
+            settings[key] = setting.value
+        elif key in DEFAULT_SETTINGS:
+            settings[key] = DEFAULT_SETTINGS[key]
+    return jsonify({'settings': settings})
