@@ -1,12 +1,4 @@
 {
   "installCommand": "uv pip install -r requirements.txt --system",
-  "functions": {
-    "api/index.py": {
-      "runtime": "@vercel/python@3",
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" }
-  ]
+  "framework": null
 }
