@@ -1,4 +1,10 @@
 {
   "installCommand": "uv pip install -r requirements.txt --system",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
+    }
+  ]
 }
