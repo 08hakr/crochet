@@ -17,9 +17,10 @@ def create_app():
     app = Flask(__name__, static_folder=frontend_dist if has_frontend else None, static_url_path='')
     app.config.from_object(Config)
 
+    frontend_url = os.environ.get('FRONTEND_URL', '*')
     CORS(app,
          supports_credentials=True,
-         origins='*',
+         origins=[frontend_url],
          allow_headers=['Content-Type', 'Authorization'],
          methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
 
