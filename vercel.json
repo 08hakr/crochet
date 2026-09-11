@@ -1,16 +1,4 @@
 {
   "installCommand": "uv pip install -r requirements.txt --system",
-  "buildCommand": "echo 'Backend only - no build needed'",
-  "framework": null,
-  "functions": {
-    "api/index.py": {
-      "runtime": "@vercel/python"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    }
-  ]
+  "framework": null
 }
