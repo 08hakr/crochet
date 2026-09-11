@@ -474,3 +474,21 @@ Error: connect ECONNREFUSED 127.0.0.1:5000
 4:41:29 pm [vite] http proxy error: /api/auth/me
 Error: connect ECONNREFUSED 127.0.0.1:5000
     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+6:53:11 pm [vite] http proxy error: /api/products?limit=4
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+6:53:11 pm [vite] http proxy error: /api/products?limit=1
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+6:53:11 pm [vite] http proxy error: /api/auth/me
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+6:53:11 pm [vite] http proxy error: /api/products?limit=4
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+6:53:11 pm [vite] http proxy error: /api/products?limit=1
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
+6:53:11 pm [vite] http proxy error: /api/auth/me
+Error: connect ECONNREFUSED 127.0.0.1:5000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1699:16)
