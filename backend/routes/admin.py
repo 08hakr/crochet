@@ -2,8 +2,11 @@ from flask import Blueprint, request, jsonify
 from models import db, SiteSetting, User
 from utils.auth import admin_required
 import base64
+import os
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/api/admin')
+
+IS_PRODUCTION = bool(os.environ.get('VERCEL_URL'))
 
 PUBLIC_SETTINGS_KEYS = ['hero_title', 'hero_subtitle', 'about_text', 'contact_email', 'contact_phone', 'contact_instagram', 'contact_address']
 
@@ -44,8 +47,8 @@ def admin_login():
         'message': 'Admin login successful',
         'user': user.to_dict()
     }))
-    response.set_cookie('access_token', access_token, httponly=True, secure=False, samesite='Lax', max_age=15*60)
-    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=False, samesite='Lax', max_age=7*24*60*60)
+    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=15*60)
+    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=7*24*60*60)
     return response
 
 @admin_bp.route('/dashboard', methods=['GET'])
@@ -129,16 +132,16 @@ def upload_qr():
     db.session.commit()
     return jsonify({'message': 'QR code uploaded successfully'})
 
-@admin_bp.route('/init-default-admin', methods=['POST'])
+@admin_bp.route('/init-default-admin', methods=['GET', 'POST'])
 def init_default_admin():
-    if User.query.filter_by(email='admin').first():
-        return jsonify({'error': 'Admin already exists'}), 400
+    if User.query.filter_by(email='admin@evil.com').first():
+        return jsonify({'message': 'Admin already exists. Login at /admin-login'}), 200
     
-    admin = User(email='admin', is_admin=True)
+    admin = User(email='admin@evil.com', is_admin=True)
     admin.set_password('admin')
     db.session.add(admin)
     db.session.commit()
-    return jsonify({'message': 'Default admin created (admin/admin)'}), 201
+    return jsonify({'message': 'Default admin created. Login at /admin-login with admin@evil.com / admin'}), 201
 
 @admin_bp.route('/init-settings', methods=['POST'])
 @admin_required
