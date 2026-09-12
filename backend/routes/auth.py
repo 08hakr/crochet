@@ -5,7 +5,7 @@ from utils.auth import generate_tokens, token_required
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 
-IS_PRODUCTION = bool(os.environ.get('VERCEL_URL'))
+IS_PRODUCTION = bool(os.environ.get('VERCEL_URL') or os.environ.get('RENDER'))
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
@@ -36,8 +36,8 @@ def register():
         'message': 'Registered successfully',
         'user': user.to_dict()
     }))
-    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=15*60)
-    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=7*24*60*60)
+    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=15*60)
+    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=7*24*60*60)
     return response, 201
 
 @auth_bp.route('/login', methods=['POST'])
@@ -62,15 +62,15 @@ def login():
         'message': 'Logged in successfully',
         'user': user.to_dict()
     }))
-    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=15*60)
-    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=7*24*60*60)
+    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=15*60)
+    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=7*24*60*60)
     return response
 
 @auth_bp.route('/logout', methods=['POST'])
 def logout():
     response = make_response(jsonify({'message': 'Logged out successfully'}))
-    response.set_cookie('access_token', '', httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=0)
-    response.set_cookie('refresh_token', '', httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=0)
+    response.set_cookie('access_token', '', httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=0)
+    response.set_cookie('refresh_token', '', httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=0)
     return response
 
 @auth_bp.route('/refresh', methods=['POST'])
@@ -95,8 +95,8 @@ def refresh():
         'message': 'Token refreshed',
         'user': user.to_dict()
     }))
-    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=15*60)
-    response.set_cookie('refresh_token', new_refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=7*24*60*60)
+    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=15*60)
+    response.set_cookie('refresh_token', new_refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=7*24*60*60)
     return response
 
 @auth_bp.route('/me', methods=['GET'])

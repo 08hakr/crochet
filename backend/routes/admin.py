@@ -6,7 +6,7 @@ import os
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/api/admin')
 
-IS_PRODUCTION = bool(os.environ.get('VERCEL_URL'))
+IS_PRODUCTION = bool(os.environ.get('VERCEL_URL') or os.environ.get('RENDER'))
 
 PUBLIC_SETTINGS_KEYS = ['hero_title', 'hero_subtitle', 'about_text', 'contact_email', 'contact_phone', 'contact_instagram', 'contact_address']
 
@@ -47,8 +47,8 @@ def admin_login():
         'message': 'Admin login successful',
         'user': user.to_dict()
     }))
-    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=15*60)
-    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='Lax', max_age=7*24*60*60)
+    response.set_cookie('access_token', access_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=15*60)
+    response.set_cookie('refresh_token', refresh_token, httponly=True, secure=IS_PRODUCTION, samesite='None' if IS_PRODUCTION else 'Lax', max_age=7*24*60*60)
     return response
 
 @admin_bp.route('/dashboard', methods=['GET'])
