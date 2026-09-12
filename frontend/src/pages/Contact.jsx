@@ -18,7 +18,7 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    api.get('/admin/settings/public').then(res => {
+    api.get('/api/admin/settings/public').then(res => {
       const s = res.data.settings || {};
       setContactInfo(prev => ({
         email: s.contact_email || prev.email,
