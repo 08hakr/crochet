@@ -23,6 +23,7 @@ import AdminProducts from './pages/admin/AdminProducts';
 import AdminCategories from './pages/admin/AdminCategories';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminOrderDetail from './pages/admin/AdminOrderDetail';
+import AdminMessages from './pages/admin/AdminMessages';
 
 function ProtectedRoute({ children, adminOnly = false }) {
   const { isAuthenticated, isAdmin, loading } = useAuth();
@@ -115,6 +116,7 @@ function App() {
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/categories" element={<AdminCategories />} />
             <Route path="/admin/settings" element={<AdminSettings />} />
+            <Route path="/admin/messages" element={<AdminMessages />} />
             <Route path="/admin/orders/:id" element={<AdminOrderDetail />} />
           </Route>
 

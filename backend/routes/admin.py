@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from models import db, SiteSetting, User
-from utils.auth import admin_required
+from models import db, SiteSetting, User, ContactMessage
+from utils.auth import admin_required, token_required
 import base64
 import os
 
@@ -163,3 +163,48 @@ def get_public_settings():
         elif key in DEFAULT_SETTINGS:
             settings[key] = DEFAULT_SETTINGS[key]
     return jsonify({'settings': settings})
+
+@admin_bp.route('/messages', methods=['GET'])
+@admin_required
+def get_messages():
+    messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).all()
+    return jsonify({'messages': [m.to_dict() for m in messages]})
+
+@admin_bp.route('/messages/<int:message_id>', methods=['PUT'])
+@admin_required
+def mark_message_read(message_id):
+    msg = db.session.get(ContactMessage, message_id)
+    if not msg:
+        return jsonify({'error': 'Message not found'}), 404
+    msg.read = True
+    db.session.commit()
+    return jsonify({'message': 'Marked as read'})
+
+@admin_bp.route('/messages/<int:message_id>', methods=['DELETE'])
+@admin_required
+def delete_message(message_id):
+    msg = db.session.get(ContactMessage, message_id)
+    if not msg:
+        return jsonify({'error': 'Message not found'}), 404
+    db.session.delete(msg)
+    db.session.commit()
+    return jsonify({'message': 'Message deleted'})
+
+@admin_bp.route('/contact', methods=['POST'])
+def submit_contact_message():
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+
+    name = data.get('name', '').strip()
+    email = data.get('email', '').strip()
+    subject = data.get('subject', '').strip()
+    message = data.get('message', '').strip()
+
+    if not name or not email or not subject or not message:
+        return jsonify({'error': 'All fields are required'}), 400
+
+    msg = ContactMessage(name=name, email=email, subject=subject, message=message)
+    db.session.add(msg)
+    db.session.commit()
+    return jsonify({'message': 'Message sent successfully'}), 201

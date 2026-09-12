@@ -114,7 +114,14 @@ export const adminAPI = {
     headers: { 'Content-Type': 'multipart/form-data' }
   }),
   initDefaultAdmin: () => api.post('/api/admin/init-default-admin'),
-  initSettings: () => api.post('/api/admin/init-settings')
+  initSettings: () => api.post('/api/admin/init-settings'),
+  getMessages: () => api.get('/api/admin/messages'),
+  markMessageRead: (id) => api.put(`/api/admin/messages/${id}`),
+  deleteMessage: (id) => api.delete(`/api/admin/messages/${id}`)
+};
+
+export const contactAPI = {
+  submit: (data) => api.post('/api/admin/contact', data)
 };
 
 export const settingsAPI = {
