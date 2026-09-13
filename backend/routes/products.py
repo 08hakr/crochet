@@ -102,17 +102,42 @@ def update_product(product_id):
         product.image_blob = image_file.read()
         product.image_mime = image_file.mimetype
 
-    if data.get('remove_images') == 'true':
-        ProductImage.query.filter_by(product_id=product.id).delete()
+    remove_main = data.get('remove_main_image')
+    if remove_main == 'true':
+        product.image_blob = None
+        product.image_mime = None
+        existing_gallery = ProductImage.query.filter_by(product_id=product.id).order_by(ProductImage.display_order).first()
+        if existing_gallery:
+            product.image_blob = existing_gallery.image_blob
+            product.image_mime = existing_gallery.image_mime
+            db.session.delete(existing_gallery)
+
+    promote_id = data.get('promote_image', type=int)
+    if promote_id:
+        promote_img = db.session.get(ProductImage, promote_id)
+        if promote_img and promote_img.product_id == product.id:
+            product.image_blob = promote_img.image_blob
+            product.image_mime = promote_img.image_mime
+            db.session.delete(promote_img)
+
+    remove_ids = data.get('remove_images')
+    if remove_ids:
+        for rid in remove_ids.split(','):
+            rid = rid.strip()
+            if rid.isdigit():
+                img = db.session.get(ProductImage, int(rid))
+                if img and img.product_id == product.id:
+                    db.session.delete(img)
 
     images = request.files.getlist('images')
     if images and any(img and img.filename for img in images):
+        max_order = max([img.display_order for img in product.images], default=-1) + 1
         for idx, img in enumerate(images):
             if img and img.filename:
                 product.images.append(ProductImage(
                     image_blob=img.read(),
                     image_mime=img.mimetype,
-                    display_order=idx
+                    display_order=max_order + idx
                 ))
     
     db.session.commit()

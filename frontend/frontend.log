@@ -510,3 +510,8 @@ Error: connect ECONNREFUSED 127.0.0.1:5000
 6:57:06 pm [vite] hmr update /src/pages/ProductDetail.jsx
 6:57:12 pm [vite] hmr update /src/pages/ProductDetail.jsx
 6:57:22 pm [vite] hmr update /src/pages/ProductDetail.jsx
+7:10:17 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+7:10:26 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+7:10:37 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+7:10:45 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+7:11:03 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx

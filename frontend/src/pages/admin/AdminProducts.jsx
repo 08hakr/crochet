@@ -19,6 +19,7 @@ export default function AdminProducts() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [removedImages, setRemovedImages] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -56,6 +57,7 @@ export default function AdminProducts() {
       setFormData({ name: '', description: '', price: '', category_id: '', stock: '', image: null, images: [] });
     }
     setErrors({});
+    setRemovedImages([]);
     setModalOpen(true);
   };
 
@@ -64,6 +66,7 @@ export default function AdminProducts() {
     setEditingProduct(null);
     setFormData({ name: '', description: '', price: '', category_id: '', stock: '', image: null, images: [] });
     setErrors({});
+    setRemovedImages([]);
   };
 
   const handleChange = (e) => {
@@ -82,10 +85,31 @@ export default function AdminProducts() {
 
   const removeExistingImage = (imageId) => {
     if (!editingProduct) return;
+    const img = editingProduct.images.find(i => i.id === imageId);
+    if (img) {
+      setRemovedImages(prev => [...prev, imageId]);
+    }
     setEditingProduct(prev => ({
       ...prev,
       images: prev.images.filter(img => img.id !== imageId)
     }));
+  };
+
+  const removeMainImage = () => {
+    setFormData(prev => ({ ...prev, image: 'REMOVE' }));
+  };
+
+  const setPrimary = (source, id) => {
+    if (source === 'existing' && editingProduct) {
+      const img = editingProduct.images.find(i => i.id === id);
+      if (img) {
+        setFormData(prev => ({ ...prev, image: null, promoteImage: id }));
+        setEditingProduct(prev => ({
+          ...prev,
+          images: prev.images.filter(i => i.id !== id)
+        }));
+      }
+    }
   };
 
   const validate = () => {
@@ -122,6 +146,15 @@ export default function AdminProducts() {
       });
 
       if (editingProduct) {
+        if (removedImages.length > 0) {
+          formDataToSend.append('remove_images', removedImages.join(','));
+        }
+        if (formData.promoteImage) {
+          formDataToSend.append('promote_image', formData.promoteImage);
+        }
+        if (formData.image === 'REMOVE') {
+          formDataToSend.append('remove_main_image', 'true');
+        }
         await productsAPI.update(editingProduct.id, formDataToSend);
       } else {
         await productsAPI.create(formDataToSend);
@@ -339,65 +372,52 @@ export default function AdminProducts() {
               <div className="form-group">
                 <label className="form-label">Product Images</label>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
-                  <label className="btn btn-outline" style={{textAlign: 'center', cursor: 'pointer'}}>
-                    <input
-                      type="file"
-                      name="image"
-                      accept="image/*"
-                      onChange={handleChange}
-                      style={{display: 'none'}}
-                      disabled={submitting}
-                    />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{marginRight: '8px'}}>
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="17 8 12 3 7 8"></polyline>
-                      <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    {formData.image ? formData.image.name : 'Choose main image'}
-                  </label>
-                  {formData.image && (
-                    <img src={URL.createObjectURL(formData.image)} alt="Preview" style={{maxWidth: '200px', borderRadius: 'var(--radius-sm)', border: '2px solid var(--border)'}} />
-                  )}
-                  {editingProduct?.image && !formData.image && (
-                    <div style={{fontSize: '0.85rem', color: 'var(--text-light)'}}>
-                      Current main image will be kept unless you upload a new one.
-                    </div>
-                  )}
 
-                  <label className="btn btn-outline" style={{textAlign: 'center', cursor: 'pointer', marginTop: '8px'}}>
-                    <input
-                      type="file"
-                      name="images"
-                      accept="image/*"
-                      multiple
-                      onChange={handleChange}
-                      style={{display: 'none'}}
-                      disabled={submitting}
-                    />
-                    + Add more images (gallery)
-                  </label>
+                  <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px'}}>
+                    {editingProduct?.image && formData.image !== 'REMOVE' && (
+                      <div style={{position: 'relative'}}>
+                        <img src={editingProduct.image} alt="" style={{width: '90px', height: '90px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', border: '3px solid var(--primary)'}} />
+                        <span style={{position: 'absolute', bottom: '2px', left: '2px', background: 'var(--primary)', color: 'white', fontSize: '0.6rem', padding: '1px 5px', borderRadius: '4px', fontWeight: 600}}>PRIMARY</span>
+                        <button type="button" onClick={removeMainImage} style={{position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', borderRadius: '50%', background: 'var(--error)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>×</button>
+                      </div>
+                    )}
 
-                  {editingProduct?.images?.length > 0 && (
-                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px'}}>
-                      {editingProduct.images.map(img => (
+                    {editingProduct?.images?.map(img => (
+                      !removedImages.includes(img.id) && (
                         <div key={img.id} style={{position: 'relative'}}>
-                          <img src={img.url} alt="" style={{width: '80px', height: '80px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', border: '2px solid var(--border)'}} />
+                          <img src={img.url} alt="" style={{width: '90px', height: '90px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', border: '2px solid var(--border)'}} />
+                          <button type="button" onClick={() => setPrimary('existing', img.id)} style={{position: 'absolute', bottom: '2px', left: '2px', background: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '0.55rem', padding: '1px 4px', borderRadius: '4px', cursor: 'pointer', border: 'none'}}>Set Primary</button>
                           <button type="button" onClick={() => removeExistingImage(img.id)} style={{position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', borderRadius: '50%', background: 'var(--error)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>×</button>
                         </div>
-                      ))}
-                    </div>
-                  )}
+                      )
+                    ))}
 
-                  {formData.images.length > 0 && (
-                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px'}}>
-                      {formData.images.map((file, idx) => (
-                        <div key={idx} style={{position: 'relative'}}>
-                          <img src={URL.createObjectURL(file)} alt="" style={{width: '80px', height: '80px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', border: '2px solid var(--primary)'}} />
-                          <button type="button" onClick={() => removeImage(idx)} style={{position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', borderRadius: '50%', background: 'var(--error)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>×</button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                    {formData.image && formData.image !== 'REMOVE' && (
+                      <div style={{position: 'relative'}}>
+                        <img src={URL.createObjectURL(formData.image)} alt="" style={{width: '90px', height: '90px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', border: '3px solid var(--primary)'}} />
+                        <span style={{position: 'absolute', bottom: '2px', left: '2px', background: 'var(--primary)', color: 'white', fontSize: '0.6rem', padding: '1px 5px', borderRadius: '4px', fontWeight: 600}}>NEW PRIMARY</span>
+                        <button type="button" onClick={() => setFormData(prev => ({ ...prev, image: null }))} style={{position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', borderRadius: '50%', background: 'var(--error)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>×</button>
+                      </div>
+                    )}
+
+                    {formData.images.map((file, idx) => (
+                      <div key={`new-${idx}`} style={{position: 'relative'}}>
+                        <img src={URL.createObjectURL(file)} alt="" style={{width: '90px', height: '90px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', border: '2px solid var(--border)'}} />
+                        <button type="button" onClick={() => removeImage(idx)} style={{position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', borderRadius: '50%', background: 'var(--error)', color: 'white', border: 'none', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>×</button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap'}}>
+                    <label className="btn btn-outline" style={{textAlign: 'center', cursor: 'pointer', flex: 1}}>
+                      <input type="file" name="image" accept="image/*" onChange={handleChange} style={{display: 'none'}} disabled={submitting} />
+                      {editingProduct?.image && formData.image !== 'REMOVE' ? 'Replace Primary Image' : 'Upload Primary Image'}
+                    </label>
+                    <label className="btn btn-outline" style={{textAlign: 'center', cursor: 'pointer', flex: 1}}>
+                      <input type="file" name="images" accept="image/*" multiple onChange={handleChange} style={{display: 'none'}} disabled={submitting} />
+                      + Add Gallery Images
+                    </label>
+                  </div>
                 </div>
               </div>
 
