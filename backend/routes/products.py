@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, send_file
-from models import db, Product, Category
+from models import db, Product, Category, ProductImage
 from utils.auth import token_required, admin_required, optional_token
 import base64
 from io import BytesIO
@@ -64,6 +64,17 @@ def create_product():
         product.image_mime = image_file.mimetype
     
     db.session.add(product)
+    db.session.flush()
+
+    images = request.files.getlist('images')
+    for idx, img in enumerate(images):
+        if img and img.filename:
+            product.images.append(ProductImage(
+                image_blob=img.read(),
+                image_mime=img.mimetype,
+                display_order=idx
+            ))
+    
     db.session.commit()
     return jsonify({'product': product.to_dict(include_image=True)}), 201
 
@@ -90,6 +101,19 @@ def update_product(product_id):
     if image_file and image_file.filename:
         product.image_blob = image_file.read()
         product.image_mime = image_file.mimetype
+
+    if data.get('remove_images') == 'true':
+        ProductImage.query.filter_by(product_id=product.id).delete()
+
+    images = request.files.getlist('images')
+    if images and any(img and img.filename for img in images):
+        for idx, img in enumerate(images):
+            if img and img.filename:
+                product.images.append(ProductImage(
+                    image_blob=img.read(),
+                    image_mime=img.mimetype,
+                    display_order=idx
+                ))
     
     db.session.commit()
     return jsonify({'product': product.to_dict(include_image=True)})

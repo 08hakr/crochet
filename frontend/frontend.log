@@ -502,3 +502,11 @@ Error: connect ECONNREFUSED 127.0.0.1:5000
 8:22:03 pm [vite] server restarted.
 8:22:04 pm [vite] vite.config.js changed, restarting server...
 8:22:04 pm [vite] server restarted.
+6:56:03 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+6:56:11 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+6:56:23 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+6:56:34 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+6:56:54 pm [vite] hmr update /src/pages/admin/AdminProducts.jsx
+6:57:06 pm [vite] hmr update /src/pages/ProductDetail.jsx
+6:57:12 pm [vite] hmr update /src/pages/ProductDetail.jsx
+6:57:22 pm [vite] hmr update /src/pages/ProductDetail.jsx

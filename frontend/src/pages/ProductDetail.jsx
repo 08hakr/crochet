@@ -11,6 +11,7 @@ export default function ProductDetail() {
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -42,7 +43,10 @@ export default function ProductDetail() {
     }
   };
 
-  const imageUrl = product?.image || null;
+  const allImages = [];
+  if (product?.image) allImages.push(product.image);
+  if (product?.images) product.images.forEach(img => allImages.push(img.url));
+  const currentImage = allImages[selectedImage] || null;
 
   if (loading) {
     return (
@@ -93,28 +97,38 @@ export default function ProductDetail() {
 
       <section className="section">
         <div className="container">
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', maxWidth: '1000px', margin: '0 auto', alignItems: 'start'}}>
+          <div style={{display: 'grid', gridTemplateColumns: allImages.length > 1 ? '80px 1fr' : '1fr', gap: '16px', maxWidth: '1000px', margin: '0 auto', alignItems: 'start'}}>
+            {allImages.length > 1 && (
+              <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                {allImages.map((url, idx) => (
+                  <img
+                    key={idx}
+                    src={url}
+                    alt={`${product.name} ${idx + 1}`}
+                    onClick={() => setSelectedImage(idx)}
+                    style={{
+                      width: '72px',
+                      height: '72px',
+                      objectFit: 'cover',
+                      borderRadius: 'var(--radius-sm)',
+                      border: selectedImage === idx ? '2px solid var(--primary)' : '2px solid var(--border)',
+                      cursor: 'pointer',
+                      opacity: selectedImage === idx ? 1 : 0.6,
+                      transition: 'var(--transition)'
+                    }}
+                  />
+                ))}
+              </div>
+            )}
             <div className="card" style={{overflow: 'hidden', borderRadius: 'var(--radius)'}}>
-              {imageUrl ? (
+              {currentImage ? (
                 <img
-                  src={imageUrl}
+                  src={currentImage}
                   alt={product.name}
-                  style={{
-                    width: '100%',
-                    aspectRatio: '1',
-                    objectFit: 'cover'
-                  }}
+                  style={{width: '100%', aspectRatio: '1', objectFit: 'cover'}}
                 />
               ) : (
-                <div style={{
-                  width: '100%',
-                  aspectRatio: '1',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '6rem',
-                  background: 'var(--secondary)'
-                }}>
+                <div style={{width: '100%', aspectRatio: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '6rem', background: 'var(--secondary)'}}>
                   🧶
                 </div>
               )}

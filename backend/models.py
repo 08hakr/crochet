@@ -54,8 +54,10 @@ class Product(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=True)
     stock = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    images = db.relationship('ProductImage', backref='product', lazy=True, cascade='all, delete-orphan')
 
     def to_dict(self, include_image=False):
+        import base64
         data = {
             'id': self.id,
             'name': self.name,
@@ -64,11 +66,18 @@ class Product(db.Model):
             'category_id': self.category_id,
             'category_name': self.category.name if self.category else None,
             'stock': self.stock,
-            'created_at': self.created_at.isoformat() if self.created_at else None
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'images': []
         }
-        if include_image and self.image_blob:
-            import base64
-            data['image'] = f"data:{self.image_mime};base64,{base64.b64encode(self.image_blob).decode()}"
+        if include_image:
+            if self.image_blob:
+                data['image'] = f"data:{self.image_mime};base64,{base64.b64encode(self.image_blob).decode()}"
+            for img in self.images:
+                data['images'].append({
+                    'id': img.id,
+                    'url': f"data:{img.image_mime};base64,{base64.b64encode(img.image_blob).decode()}",
+                    'order': img.display_order
+                })
         return data
 
 class CartItem(db.Model):
@@ -86,6 +95,24 @@ class CartItem(db.Model):
             'product_id': self.product_id,
             'quantity': self.quantity,
             'product': self.product.to_dict(include_image=True) if self.product else None
+        }
+
+class ProductImage(db.Model):
+    __tablename__ = 'product_images'
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    image_blob = db.Column(db.LargeBinary, nullable=False)
+    image_mime = db.Column(db.String(100))
+    display_order = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def to_dict(self):
+        import base64
+        return {
+            'id': self.id,
+            'product_id': self.product_id,
+            'url': f"data:{self.image_mime};base64,{base64.b64encode(self.image_blob).decode()}",
+            'display_order': self.display_order
         }
 
 class Order(db.Model):
